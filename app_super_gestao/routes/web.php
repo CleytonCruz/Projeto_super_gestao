@@ -24,8 +24,18 @@ Route::prefix('/app')->group(function(){
     Route::get('/produtos',     function(){return 'produtos'    ; })->name('app.produtos');
 });
 
+Route::get('/rota1',     function(){
+    echo "rota1"; 
+})->name('rota1');// redireciona as rotas
+
+Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');//passa os parametros para o controlador
 
 
+route ::fallback(function(){//para paginas nao encontradas
+    echo 'a rota acessada nao existe. <a href="'.route('site.index').'">clique aqui</a> para ir a pagina inicial';
+});
+
+//Route::redirect('rota2','rota1');// redireciona a rota
 
 
 // Route::get('/contato/{nome}/{categoria_id}', //
@@ -35,6 +45,11 @@ Route::prefix('/app')->group(function(){
 //         }
 // )->where('categoria_id','[0-9]+')->where('nome','[A-Za-z]+');
 
+
+
+//Route::get('/rota2',     function(){
+ //   return redirect()->route('rota1');
+//})->name('rota2');
 
 /*
 Verbo HTTP
